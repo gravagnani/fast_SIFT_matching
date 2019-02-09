@@ -22,7 +22,7 @@ function [image, descriptors, locs] = sift(imageFile)
 image = imread(imageFile);
 
 if size(image, 3) == 3
-   image = rgb2gray(image) 
+   image = rgb2gray(image);
 end
 
 % If you have the Image Processing Toolbox, you can uncomment the following
