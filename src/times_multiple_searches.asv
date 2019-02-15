@@ -1,0 +1,70 @@
+% measure the time needed to compute multiple searches
+% compare times of linear search and tree search with branch factor
+% in the cases 2, 4 and 8
+% keep the dataset dimension constant equal to 3000
+
+clear all;
+load('big_dataset.mat');
+
+max_searches = 1000;
+times_lin = zeros(1, max_searches);
+times_tree2 = zeros(1, max_searches);
+times_tree4 = zeros(1, max_searches);
+times_tree8 = zeros(1, max_searches);
+x = [];
+
+D_small = D(randperm(size(D, 1), 3000));
+
+tic;
+T2 = create_tree(D_small, 2, 20);
+t1 = toc;
+tic;
+T4 = create_tree(D_small, 4, 20);
+t2 = toc;
+tic;
+T8 = create_tree(D_small, 8, 20);
+t3 = toc;
+fprintf('Creation tree Tree b2: %.3f\n', t1);
+fprintf('Creation tree Tree b4: %.3f\n', t2);
+fprintf('Creation tree Tree b8: %.3f\n', t3); 
+
+for i = 1 : 1000
+    % linear search
+    for j = 1 : i
+       tic;
+       neighbors = lin_search(D_small, );
+       t = toc;
+       lin_search(i) = lin_search(i) + t;
+    end
+    % tree search BF=2
+    for j = 1 : i
+       tic;
+       
+       t = toc;
+       tree_search2(i) = tree_search2(i) + t;
+    end
+    % tree search BF=4
+    for j = 1 : i
+       tic;
+       
+       t = toc;
+       tree_search4(i) = tree_search4(i) + t;
+    end
+    % tree search BF=8
+    for j = 1 : i
+       tic;
+       
+       t = toc;
+       tree_search8(i) = lin_search(i) + t;
+    end
+    
+end
+
+
+
+figure;
+semilogy(x, times_lin, x, times_tree2, x, times_tree4, x, times_tree8);
+legend('Linear search', 'Tree search BF=2', 'Tree search BF=4', 'Tree search BF=8');
+xlabel('Number of searches');
+ylabel('Time (s)');
+title('Compare multiple searching times');

@@ -18,9 +18,9 @@ function neighbors = tree_search(T, Q, K, Lmax)
     end
     
     neighbors = [];
-    for i = 1 : K
+    for i = 1 : K%min([K R.size()])
         [N, pri] = R.pop();
-        neighbors = [neighbors; N]
+        neighbors = [neighbors; N];
     end
     
 end
@@ -53,12 +53,12 @@ function [pq, r, l] = traverse_tree(N, PQ, R, Q)
         % all other nodes
         Cp = C(1:size(C, 1) ~= min);
         % add all nodes in Cp to PQ
-        Cp
         for i = 1 : size(Cp, 1)
-            pq.push(norm(Cp(i).value.val - Q.val), node); 
+            pq.push(norm(Cp(i).value.val - Q.val), Cp(i)); 
         end
         
-        [pq, r, l] = traverse_tree(Cq, pq, r, Q);
+        [pq, r, l1] = traverse_tree(Cq, pq, r, Q);
+        l = l + l1;
         
     end
 

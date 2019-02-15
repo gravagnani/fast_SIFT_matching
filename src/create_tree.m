@@ -7,12 +7,8 @@ function T = create_tree(D, K, S_l)
     T = tree;
     root = node;
     root.descriptor_set = D;
-                    %set_descriptor_set(root, D);
     T.root = root;
-                    %set_root(T, root);
     T.root = create_tree_supp(T.root, K, S_l);
-    
-                    %disp("finish");
 
 end
 

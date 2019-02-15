@@ -1,9 +1,8 @@
 clear all;
 load('dataset.mat');
 
-X = ["lena.ppm", "../images/bark/img1.ppm", "../images/bikes/img1.ppm", "../images/boat/img1.pgm"];
+%X = ["lena.ppm", "../images/bark/img1.ppm", "../images/bikes/img1.ppm", "../images/boat/img1.pgm"];
 % D = create_dataset_descriptors(X)
-
 
 % D_small = D(1:10, :);
 % T = create_tree(D_small, 3, 5);
